@@ -2,7 +2,7 @@
   <br>
   <picture>
     <source media="(max-width: 768px)" srcset="https://codeberg.org/opendefocus/opendefocus/media/branch/main/resources/header_mobile.png">
-    <img src="https://codeberg.org/opendefocus/opendefocus/media/branch/main/resources/header_christmas.png" alt="OpenDefocus" style="width: 100%;">
+    <img src="https://codeberg.org/opendefocus/opendefocus/media/branch/main/resources/header.png" alt="OpenDefocus" style="width: 100%;">
   </picture>
   <br></br>
   <p>Logo thanks to <a href="https://www.instagram.com/welmaakt/">Welmoed Boersma</a>!</p>
@@ -21,7 +21,7 @@
     <a href="https://crates.io/crates/opendefocus">
         <img src="https://img.shields.io/crates/v/opendefocus" alt="Version" />
     </a>
-    <a href="https://img.shields.io/badge/nuke-15%2B-yellow?logo=nuke">
+    <a href="https://opendefocus.codeberg.page/download.html">
         <img src="https://img.shields.io/badge/nuke-15%2B-yellow?logo=nuke" alt="Nuke Versions" />
     </a>
 </p>
@@ -30,8 +30,9 @@
 
 <p align="center">
   <a href="#features">Features</a> •
-  <a href="https://codeberg.org/opendefocus/opendefocus/releases" target="_blank">Download</a> •
+  <a href="https://opendefocus.codeberg.page/download.html" target="_blank">Download</a> •
   <a href="https://opendefocus.codeberg.page">Documentation</a> •
+  <a href="https://codeberg.org/opendefocus/opendefocus/issues" target="_blank">Issues</a> •
   <a href="./CHANGELOG.md" target="_blank">Changelog</a>
 </p>
 

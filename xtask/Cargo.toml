@@ -32,6 +32,7 @@ git2 = "0.20"
 async-walkdir = "2.1.0"
 find-msvc-tools = "0.1.5"
 serde = { version = "1.0.228", features = ["derive"] }
+chrono = {version = "0.4.42", features = ["serde"]}
 
 [lints]
 workspace = true

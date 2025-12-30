@@ -508,6 +508,7 @@ dependencies = [
  "iana-time-zone",
  "js-sys",
  "num-traits",
+ "serde",
  "wasm-bindgen",
  "windows-link",
 ]
@@ -4832,6 +4833,7 @@ dependencies = [
  "astral-tokio-tar",
  "async-compression",
  "async-walkdir",
+ "chrono",
  "clap",
  "duct",
  "find-msvc-tools",

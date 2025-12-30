@@ -125,4 +125,5 @@ jobs:
       - name: Release
         run: cargo xtask --release-package
         env:
-          CODEBERG_RELEASE_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+          CODEBERG_RELEASE_TOKEN: ${{ secrets.CODEBERG_RELEASE_TOKEN }}
+          WOODPECKER_ACCESS_TOKEN: ${{ secrets.WOODPECKER_ACCESS_TOKEN }}
