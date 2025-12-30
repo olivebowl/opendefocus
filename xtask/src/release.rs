@@ -13,7 +13,7 @@ use tokio::fs::File;
 use tokio::io::AsyncReadExt;
 use zip::{ZipWriter, write::SimpleFileOptions};
 pub async fn release_package(target_archive_path: Option<PathBuf>) -> Result<()> {
-    let target_file = if let Some(target_path) = target_archive_path {
+    let target_file = if let Some(target_path) = target_archive_path.clone() {
         target_path
     } else {
         let tmp_dir = std::env::temp_dir();
@@ -34,6 +34,9 @@ pub async fn release_package(target_archive_path: Option<PathBuf>) -> Result<()>
     create_archive(&target_file, &package_path).await?;
     let release_id = latest_release().await?;
     let filename = target_file.file_name().unwrap().to_str().unwrap();
+    if target_archive_path.is_some() {
+        return Ok(());
+    };
     let metadata = ReleaseData {
         changelog: None,
         date: None,
@@ -48,14 +51,14 @@ pub async fn release_package(target_archive_path: Option<PathBuf>) -> Result<()>
 
 async fn trigger_docs_release() -> Result<()> {
     let client = reqwest::Client::builder().build()?;
-    client
-        .post(format!("https://ci.codeberg.org/repos/15835/pipelines"))
+    let response = client
+        .post(format!("https://ci.codeberg.org/api/repos/15835/pipelines"))
         .bearer_auth(std::env::var("WOODPECKER_ACCESS_TOKEN")?)
         .json(&json!({"branch": "main"}))
         .send()
         .await?
         .error_for_status()?;
-
+    println!("{}", response.text().await?);
     Ok(())
 }
 
@@ -122,7 +125,10 @@ fn release_data_to_markdown(release_data: &[ReleaseData]) -> String {
                 release.nuke.url.as_ref().unwrap()
             ),
             format!("[Changelog](#v{})", release.version.replace(".", "")),
-            format!("[Source](https://codeberg.org/{REPOSITORY}/src/tag/v{})", release.version)
+            format!(
+                "[Source](https://codeberg.org/{REPOSITORY}/src/tag/v{})",
+                release.version
+            )
         ));
         changelogs.push(format!(
             "{}\n{}",
