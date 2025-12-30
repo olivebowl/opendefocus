@@ -15,7 +15,7 @@ log = "0.4"
 tracing-subscriber = "0.3"
 tokio = { version = "1", features = ["full"] }
 serde_json = "1.0"
-reqwest = { version = "0.12.24", features = ["json", "stream"] }
+reqwest = { version = "0.13", features = ["json", "stream"] }
 url = "2.5.7"
 indicatif = "0.18.3"
 futures-util = "0.3.31"

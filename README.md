@@ -61,7 +61,45 @@
 * 100% written in pure Rust (stable channel) without external library dependencies.
 * Same algorithm on GPU and CPU with same source code (thanks to Rust-GPU spirv compiler).
 * Easy to use and open API to hook into your own application or DCC.
-* Lots of control over the output, [take a look at all options available](https://docs.rs/cc/latest/opendefocus/datamodel/struct.Settings.html).
+* Lots of control over the output, [take a look at all options available](https://docs.rs/opendefocus/latest/opendefocus/datamodel/index.html).
+
+## Examples
+### Simple convolution
+
+```rust
+use anyhow::Result;
+use image::{DynamicImage, Rgba32FImage};
+use image_ndarray::prelude::ImageArray;
+use opendefocus::OpenDefocusRenderer;
+use opendefocus::datamodel::Settings;
+
+#[tokio::main]
+async fn main() -> Result<()> {
+    let mut settings = Settings::default();
+    // set the defocus size in pixel radius, you can change whatever you want
+    settings.defocus.circle_of_confusion.size = 25.0;
+
+    // initialize a new renderer, this contains the runner instance (wgpu for example)
+    // its fine to throw away if you only use one image, else its good to reuse to prevent initializing all the time
+    let renderer = OpenDefocusRenderer::new(true, &mut settings).await?;
+
+    // load an example image
+    let image = image::load_from_memory(include_bytes!("../../examples/simple/toad.png"))?.to_rgba32f();
+    let mut array = image.to_ndarray();
+
+    // then here we actually render
+    renderer
+        .render(settings, array.view_mut(), None, None)
+        .await?;
+
+    // just some loading to the image crate once again after rendering and storing it
+    let image: Rgba32FImage = Rgba32FImage::from_ndarray(array)?;
+    let image = DynamicImage::from(image).to_rgba8();
+    image.save("./result.png")?;
+    Ok(())
+}
+
+```
 
 ## Structure
 The project has multiple crates defined at the crates directory:
@@ -82,6 +120,7 @@ Besides that, these crates have been located outside of this repository as they 
 | [circle-of-confusion](https://codeberg.org/olivebowl/circle-of-confusion) | Circle of confusion algorithm to calculate the actual circle of confusion from real world camera data or create a nice depth falloff based on selection |
 | [bokeh-creator](https://codeberg.org/olivebowl/bokeh-creator)             | Filter kernel generation library                                                                                                                        |
 | [inpaint](https://codeberg.org/olivebowl/inpaint)                         | Telea inpainting algorithm in pure Rust                                                                                                                 |
+
 
 
 
