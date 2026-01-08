@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.7](https://codeberg.org/opendefocus/opendefocus/compare/v0.1.6...v0.1.7) - 2026-01-08
+
+### Other
+
+- Merge pull request 'fix procedure not found on Windows builds' ([#46](https://codeberg.org/opendefocus/opendefocus/pulls/46)) from 45-fix-windows-procedure-not-found into main
+
 ## [0.1.6](https://codeberg.org/opendefocus/opendefocus/compare/v0.1.5...v0.1.6) - 2025-12-31
 
 ### Added
