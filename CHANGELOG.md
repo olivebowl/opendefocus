@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.9](https://codeberg.org/opendefocus/opendefocus/compare/v0.1.8...v0.1.9) - 2026-01-22
+
+### Other
+
+- Merge pull request '#23: fix preview filter invalid bbox creation' ([#56](https://codeberg.org/opendefocus/opendefocus/pulls/56)) from 23-fix-invalid-bbox-nuke into main
+
 ## [0.1.8](https://codeberg.org/opendefocus/opendefocus/compare/v0.1.7...v0.1.8) - 2026-01-10
 
 ### Fixed
